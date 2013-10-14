@@ -3,19 +3,19 @@ class User < ActiveRecord::Base
 
   attr_accessible :first_name, :last_name, :email, :username, :k_points
 
-  # validates :first_name, :presence => true
-  # validates :last_name, :presence => true
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
 
-  # validates :username,
-  #           :presence => true,
-  #           :length => {:minimum => 2, :maximum => 32},
-  #           :format => {:with => /^\w+$/},
-  #           :uniqueness => {:case_sensitive => false}
+  validates :username,
+            :presence => true,
+            :length => {:minimum => 2, :maximum => 32},
+            :format => {:with => /^\w+$/},
+            :uniqueness => {:case_sensitive => false}
 
-  # validates :email,
-  #           :presence => true,
-  #           :format => {:with => /^[\w+\-.]+@[a-z\d\-.]+\.[a-z]+$/i},
-  #           :uniqueness => {:case_sensitive => false}
+  validates :email,
+            :presence => true,
+            :format => {:with => /^[\w+\-.]+@[a-z\d\-.]+\.[a-z]+$/i},
+            :uniqueness => {:case_sensitive => false}
 
   def self.by_karma
     User.order("k_points DESC")
