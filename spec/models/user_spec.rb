@@ -48,4 +48,15 @@ describe User do
       user.full_name.should eq 'John Doe'
     end
   end
+
+  describe '.page' do
+
+    it 'returns the 3rd page of users sorted by karma' do
+      users   = []
+      30.times {|n| users << create(:user_with_karma, :total => (500 + n), :points => 2)}
+
+       expect(User.page(3)).to eq(users[20..29])
+
+    end
+  end
 end
